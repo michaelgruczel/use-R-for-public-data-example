@@ -93,5 +93,13 @@ you can import the plotrix lib for the 3d pie chart
 
     install.packages("plotrix")
     library("plotrix");
+    
+If you have checked out this repo and installed R, then you should be able to execute
+   
+    source('simpleexample.R')
+    showLiabilityPieChart3D("opendata/Schulden.csv")
 
+And than have this:
+
+[piechart]: https://raw.githubusercontent.com/michaelgruczel/use-R-for-public-data-example/master/piechart.png "pie chart"
 
