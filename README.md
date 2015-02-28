@@ -24,7 +24,7 @@ Free Software Foundation's GNU General Public License in source code form (see h
 
 you can import the data:
 
-  liabilities <- read.csv("./openData/Schulden.csv", header=TRUE, sep=";")
+    liabilities <- read.csv("./openData/Schulden.csv", header=TRUE, sep=";")
     
 a first look at the dat you will get by
     
@@ -93,5 +93,13 @@ you can import the plotrix lib for the 3d pie chart
 
     install.packages("plotrix")
     library("plotrix");
+    
+If you have checked out this repo and installed R, then you should be able to execute
+   
+    source('simpleexample.R')
+    showLiabilityPieChart3D("opendata/Schulden.csv")
 
+And then you should have this
+
+![piechart] (https://raw.githubusercontent.com/michaelgruczel/use-R-for-public-data-example/master/piechart.png)
 
