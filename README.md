@@ -99,7 +99,7 @@ If you have checked out this repo and installed R, then you should be able to ex
     source('simpleexample.R')
     showLiabilityPieChart3D("opendata/Schulden.csv")
 
-And than have this:
+And then you should have this
 
-[piechart]: https://raw.githubusercontent.com/michaelgruczel/use-R-for-public-data-example/master/piechart.png "pie chart"
+[piechart]: https://raw.githubusercontent.com/michaelgruczel/use-R-for-public-data-example/master/piechart.png
 
