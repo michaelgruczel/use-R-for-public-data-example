@@ -101,5 +101,5 @@ If you have checked out this repo and installed R, then you should be able to ex
 
 And then you should have this
 
-![piechart]: (https://raw.githubusercontent.com/michaelgruczel/use-R-for-public-data-example/master/piechart.png)
+![piechart] (https://raw.githubusercontent.com/michaelgruczel/use-R-for-public-data-example/master/piechart.png)
 
