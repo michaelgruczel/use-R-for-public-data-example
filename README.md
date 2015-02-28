@@ -28,70 +28,70 @@ you can import the data:
     
 a first look at the dat you will get by
     
-  head(schulden)
+    head(schulden)
     
 Its a table, you can retrieve columns by index or name, e.g.a list of credits at the credit market you can get by 
 
-  liabilities[,4] or liabilities[,"SchuldenAmKreditmarkt"]
+    liabilities[,4] or liabilities[,"SchuldenAmKreditmarkt"]
 
 It works by [row, column] and in this case we use a blan for all rows.
 The real power of the language is the native support for statistical data. 
 Examples are:
 
-  mean(as.numeric(liabilities[, 6]))
-  hist(as.numeric(liabilities[, 6]))
+    mean(as.numeric(liabilities[, 6]))
+    hist(as.numeric(liabilities[, 6]))
 
 which calculates and plot the mean value and an histogramm, even cooler is a pie chart for the first 5 organisations.
 
-  pie(as.numeric(liabilities[, 6])[1:5])
+    pie(as.numeric(liabilities[, 6])[1:5])
   
 If you check the data (e.g. by liabilities[, 6]), then you will realize that the data is incomplete. 
 In some cases . or - is filled in. So lets create a function which will sum up one kind of liabilities from a file
 (there are different type of liabilities) in the data sheet and ignores empty or invalid values.
 
-  liabilitiesSum <- function(filename, columnname) {
-    data <- read.csv(filename, header=TRUE, sep=";")
-    liabilitiesSum = 0
-    for(j in 1:nrow(data)) {
-      row <- data[j,]
-      # only if value is a number add the value 
-      check <- isNumeric(row[columnname]) 
-      if(check) {
-        a <- as.numeric(row[columnname])
-        liabilitiesSum <- liabilitiesSum + a
+    liabilitiesSum <- function(filename, columnname) {
+      data <- read.csv(filename, header=TRUE, sep=";")
+      liabilitiesSum = 0
+      for(j in 1:nrow(data)) {
+        row <- data[j,]
+        # only if value is a number add the value 
+        check <- isNumeric(row[columnname]) 
+        if(check) {
+          a <- as.numeric(row[columnname])
+          liabilitiesSum <- liabilitiesSum + a
+        }
       }
+      liabilitiesSum
     }
-    liabilitiesSum
-  }
 
-  isNumeric <- function(x) {
-   !is.na(x) & is.numeric(as.numeric(x)) 
-  }
+    isNumeric <- function(x) {
+     !is.na(x) & is.numeric(as.numeric(x)) 
+    }
   
 Now lets sum up the different liabilitiy types and put the sums in a pie chart
 
-  showLiabilityPieChart <- function(filename) {
-    liabilitiesCreditmarket <- liabilitiesSum(filename, "SchuldenAmKreditmarkt")
-    liabilitiesStateOrganisations <- liabilitiesSum(filename, "SchuldenKommunaleEigenbetriebe")
-    liabilitiesHospitals <- liabilitiesSum(filename, "SchuldenKrankenhaeuser")
-    slices <- c(liabilitiesCreditmarket, liabilitiesStateOrganisations, liabilitiesHospitals) 
-    lbls <- c("creditmarket", "organisations", "hospitals")
-    pie(slices, labels = lbls)
-  }
+    showLiabilityPieChart <- function(filename) {
+      liabilitiesCreditmarket <- liabilitiesSum(filename, "SchuldenAmKreditmarkt")
+      liabilitiesStateOrganisations <- liabilitiesSum(filename, "SchuldenKommunaleEigenbetriebe")
+      liabilitiesHospitals <- liabilitiesSum(filename, "SchuldenKrankenhaeuser")
+      slices <- c(liabilitiesCreditmarket, liabilitiesStateOrganisations, liabilitiesHospitals) 
+      lbls <- c("creditmarket", "organisations", "hospitals")
+      pie(slices, labels = lbls)
+    }
 
-  showLiabilityPieChart3D <- function(filename) {
-    liabilitiesCreditmarket <- liabilitiesSum(filename, "SchuldenAmKreditmarkt")
-    liabilitiesStateOrganisations <- liabilitiesSum(filename, "SchuldenKommunaleEigenbetriebe")
-    liabilitiesHospitals <- liabilitiesSum(filename, "SchuldenKrankenhaeuser")
-    slices <- c(liabilitiesCreditmarket, liabilitiesStateOrganisations, liabilitiesHospitals) 
-    lbls <- c("creditmarket", "organisations", "hospitals")
-    pie3D(slices, labels = lbls)
-  }
+    showLiabilityPieChart3D <- function(filename) {
+      liabilitiesCreditmarket <- liabilitiesSum(filename, "SchuldenAmKreditmarkt")
+      liabilitiesStateOrganisations <- liabilitiesSum(filename, "SchuldenKommunaleEigenbetriebe")
+      liabilitiesHospitals <- liabilitiesSum(filename, "SchuldenKrankenhaeuser")
+      slices <- c(liabilitiesCreditmarket, liabilitiesStateOrganisations, liabilitiesHospitals) 
+      lbls <- c("creditmarket", "organisations", "hospitals")
+      pie3D(slices, labels = lbls)
+    }
 
 On MAC, you have to set defaults write org.R-project.R force.LANG en_US.UTF-8 first on the terminal and then
 you can import the plotrix lib for the 3d pie chart
 
-  install.packages("plotrix")
-  library("plotrix");
+    install.packages("plotrix")
+    library("plotrix");
 
 
