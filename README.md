@@ -26,20 +26,27 @@ you can import the data:
 
     liabilities <- read.csv("./openData/Schulden.csv", header=TRUE, sep=";")
     
-a first look at the dat you will get by
+a first look at the data you will get by
     
     head(schulden)
     
-Its a table, you can retrieve columns by index or name, e.g.a list of credits at the credit market you can get by 
+Its a table, so you can retrieve columns by index or name.
+E.g. a list of liabilities at the market you can get by 
 
     liabilities[,4] or liabilities[,"SchuldenAmKreditmarkt"]
 
-It works by [row, column] and in this case we use a blan for all rows.
+It works by [row, column] and in this case we use a blank for all rows.
 The real power of the language is the native support for statistical data. 
 Examples are:
 
     mean(as.numeric(liabilities[, 6]))
+    
+or a histogramm
+
     hist(as.numeric(liabilities[, 6]))
+
+![hist] (https://raw.githubusercontent.com/michaelgruczel/use-R-for-public-data-example/master/histogramm.png)
+
 
 which calculates and plot the mean value and an histogramm, even cooler is a pie chart for the first 5 organisations.
 
